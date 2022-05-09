@@ -10,10 +10,23 @@ pipeline {
     }
 
     stage('Test') {
-      steps {
-        echo 'DÃ©marrage des tests unitaires'
-        bat 'mvn -Dtest="com.example.testingweb.smoke.**" test'
-        echo 'Fin des tests unitaires'
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'DÃ©marrage des tests unitaires'
+            bat 'mvn -Dtest="com.example.testingweb.smoke.**" test'
+            echo 'Fin des tests unitaires'
+          }
+        }
+
+        stage('Integration') {
+          steps {
+            echo 'Début de l\'intégration'
+            bat 'mvn -Dtest="com.example.testingweb.integration.**" test'
+            echo 'Fin des tests d\'intégration'
+          }
+        }
+
       }
     }
 
