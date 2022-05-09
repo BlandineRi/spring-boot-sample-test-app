@@ -6,6 +6,7 @@ pipeline {
         echo 'La construction va dÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©marrer'
         bat 'mvn -Dskiptests clean package'
         echo 'Construction terminÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©e'
+        archiveArtifacts '**/target/*.jar'
       }
     }
 
