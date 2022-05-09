@@ -9,10 +9,10 @@ pipeline {
       }
     }
 
-    stage('Unit') {
+    stage('Test') {
       steps {
         echo 'Démarrage des tests unitaires'
-        bat 'mvn -Dtest="com.example.testingweb.smoke.**"'
+        bat 'mvn -Dtest="com.example.testingweb.smoke.**" test'
         echo 'Fin des tests unitaires'
       }
     }
