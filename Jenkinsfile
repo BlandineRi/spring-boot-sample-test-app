@@ -42,6 +42,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
+        input(message: 'Voulez-vous continuer?', ok: 'Allons-y')
         echo 'Début du déploiement'
         bat 'mvn -B -DskipTests install'
         echo 'Fin du déploiement'
