@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'La construction va dÃƒÆ’Ã‚Â©marrer'
+        echo 'La construction va dÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©marrer'
         bat 'mvn -Dskiptests clean package'
-        echo 'Construction terminÃƒÂ©e'
+        echo 'Construction terminÃƒÆ’Ã‚Â©e'
       }
     }
 
@@ -13,7 +13,7 @@ pipeline {
       parallel {
         stage('Test') {
           steps {
-            echo 'DÃ©marrage des tests unitaires'
+            echo 'DÃƒÂ©marrage des tests unitaires'
             bat 'mvn -Dtest="com.example.testingweb.smoke.**" test'
             echo 'Fin des tests unitaires'
           }
@@ -21,20 +21,28 @@ pipeline {
 
         stage('Integration') {
           steps {
-            echo 'Début de l\'intégration'
+            echo 'DÃ©but de l\'intÃ©gration'
             bat 'mvn -Dtest="com.example.testingweb.integration.**" test'
-            echo 'Fin des tests d\'intégration'
+            echo 'Fin des tests d\'intÃ©gration'
           }
         }
 
         stage('Functional') {
           steps {
-            echo 'D�but des tests fonctionnels'
+            echo 'Début des tests fonctionnels'
             bat 'mvn -Dtest="com.example.testingweb.functional.**" test'
             echo 'Fin des tests fonctionnels'
           }
         }
 
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo 'D�but du d�ploiement'
+        bat 'mvn -B -DskipTests install'
+        echo 'Fin du d�ploiement'
       }
     }
 
