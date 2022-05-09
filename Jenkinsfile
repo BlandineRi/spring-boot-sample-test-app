@@ -3,15 +3,15 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'La construction va dÃ©marrer'
+        echo 'La construction va dÃƒÂ©marrer'
         bat 'mvn -Dskiptests clean package'
-        echo 'Construction terminée'
+        echo 'Construction terminÃ©e'
       }
     }
 
     stage('Unit') {
       steps {
-        echo 'D�marrage des tests unitaires'
+        echo 'Démarrage des tests unitaires'
         bat 'mvn -Dtest="com.example.testingweb.smoke.**"'
         echo 'Fin des tests unitaires'
       }
